@@ -1,0 +1,16 @@
+FROM cgr.dev/chainguard/python:latest-dev AS builder
+
+WORKDIR /octo-facts
+
+RUN python -m venv /octo-facts/venv
+
+FROM cgr.dev/chainguard/python:latest
+
+WORKDIR /octo-facts
+
+ENV PATH="/venv/bin:$PATH"
+
+COPY main.py facts.txt ./
+COPY --from=builder /octo-facts/venv /venv
+
+ENTRYPOINT [ "python", "/octo-facts/main.py" ]
