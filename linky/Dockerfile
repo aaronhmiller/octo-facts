@@ -1,8 +1,5 @@
 FROM cgr.dev/chainguard/python:latest-dev AS builder
 
-ENV LANG=C.UTF-8
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
 ENV PATH="/linky/venv/bin:$PATH"
 
 WORKDIR /linky
@@ -16,7 +13,6 @@ FROM cgr.dev/chainguard/python:latest
 
 WORKDIR /linky
 
-ENV PYTHONUNBUFFERED=1
 ENV PATH="/venv/bin:$PATH"
 
 COPY linky.py linky.png ./
